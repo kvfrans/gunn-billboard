@@ -4,29 +4,34 @@ body {
 
 .container {
 	display: grid;
-	grid-template-columns: 25% 25% 25% 25%;
-  	grid-template-rows: 25% 25% 25% 25%;
+ 	grid-gap: 10px;
+ 	grid-template-columns: 25% 25% 25% 25%;
+ 	grid-template-rows: 25% 25% 25% 25%;
+ 	justify-content: stretch;
+  	grid-template-areas: 
+  		"schedule schedule time time"
+  		"schedule schedule time time"
+  		"schedule schedule news news"
+  		"schedule schedule news news";
 }
 
-.item-a {
-	grid-column-start: 1;
-	grid-column-end: 3;
-	grid-row-start: 1;
-	grid-row-end: 5;
+#item-a {
+	background-color: #e0e0e0;
+/*	grid-column: 1 / span 2;
+	grid-row: 1 / span 4;*/
+	grid-area: schedule;
 }
 
-.item-b {
-	grid-column-start: 3;
-	grid-column-end: 5;
-	grid-row-start: 1;
-	grid-row-end: 3;
+#item-b {
+	background-color: #f0f0f0;
+	grid-area: time;
+	/*grid-column: 3 / span 2;
+	grid-row: 1 / span 2;*/
 }
 
-.item-c {
-	grid-column-start: 3;
-	grid-column-end: 5;
-	grid-row-start: 3;
-	grid-row-end: 5;
+#item-c {
+	grid-column: 3 / span 2;
+	grid-row: 3 / span 2;
 }
 
 #countdown-content {
