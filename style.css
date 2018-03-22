@@ -17,21 +17,16 @@ body {
 
 #item-a {
 	background-color: #e0e0e0;
-/*	grid-column: 1 / span 2;
-	grid-row: 1 / span 4;*/
 	grid-area: schedule;
 }
 
 #item-b {
 	background-color: #f0f0f0;
 	grid-area: time;
-	/*grid-column: 3 / span 2;
-	grid-row: 1 / span 2;*/
 }
 
 #item-c {
-	grid-column: 3 / span 2;
-	grid-row: 3 / span 2;
+	grid-area: news
 }
 
 #countdown-content {
