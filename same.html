@@ -11,6 +11,16 @@
 	<button onclick="settimer()"> timer </button>
 	<button onclick="hidetimer()"> hide </button>
 
+	<div id="main-content">
+		<div class="item-a"> </div>
+
+		<div class="item-b"> </div>
+
+		<div class="item-c"> </div>
+
+
+	</div>
+
 
 	<div id="countdown-content"> 
 		<div id="countdowntext"> GO TO CLASS </div>
@@ -30,11 +40,13 @@
 
 		function settimer(){
 			document.getElementById("countdowntext").style.display = 'block';
+			document.body.style.background = "#ff0000";
 			starttime = Date.now();
 			timer = setInterval(updatetime, 13);
 		}
 
 		function updatetime(){
+			if(countdown < 10) document.getElementById("countdown").style.setProperty("left", )
 			if(countdown > 0){
 				currenttime = Date.now();
 				countdown = parseFloat(Math.round(60000-(currenttime-starttime))/1000).toFixed(2);
@@ -44,6 +56,8 @@
 			else {
 				timer = null;
 				countdown = 0;
+				document.getElementById("countdown").innerHTML = "0.00";
+				document.getElementById("countdowntext").innerHTML = "you are late";
 			}
 		}
 
