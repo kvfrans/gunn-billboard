@@ -3,25 +3,34 @@
 <head>
 	<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="jquery.js"></script>
 </head>
 <body>
 
-	content i think
 
-	<button onclick="settimer()""> </button>
+	<button onclick="settimer()"> timer </button>
+	<button onclick="fliptimer()"> hide </button>
+	<!-- content i think -->
+	<div id="countdown-content"> 
+	
 
-	<div id="countdown"> haha same </div>
+
+	<div id="countdown">  </div>
+	</div>
 
 	<script>
 		var starttime;
 		var currenttime = 0;
 		var countdown = 60;
 		var check = true;
+		var hidden = true;
 		var timer;
+		var scheduleraw;
+		var schedule;
 
 		function settimer(){
 			starttime = Date.now()
-			timer = setInterval(updatetime, 1);
+			timer = setInterval(updatetime, 13);
 		}
 
 		function updatetime(){
@@ -36,7 +45,27 @@
 				countdown = 0;
 			}
 		}
-		
+
+		function fliptimer(){
+			if(hidden) document.getElementById("countdown-content").style.display = 'none';
+			else document.getElementById("countdown-content").style.display = 'block';
+			hidden = !hidden;
+		}
+
+		function parseschedule(res){
+			schedule = res.split(/\r?\n/);
+			console.log(schedule);
+			
+		}
+
+		$.get({
+			url: "http://kvfrans.com:8044/schedule.txt",
+			type: 'GET',
+			success: function(res) {
+				parseschedule(res);
+			}
+		});
+
 		</script>
 
 </body>
