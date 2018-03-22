@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -12,20 +13,21 @@
 	<div id="countdown"> haha same </div>
 
 	<script>
-		const starttime = Date.now();
+		var starttime;
 		var currenttime = 0;
 		var countdown = 60;
 		var check = true;
 		var timer;
 
 		function settimer(){
+			starttime = Date.now()
 			timer = setInterval(updatetime, 1);
 		}
 
 		function updatetime(){
-			if(countdown >= 0){
+			if(countdown > 0){
 				currenttime = Date.now();
-				countdown = Number((10-(currenttime-starttime)/1000).toFixed(2));
+				countdown = parseFloat(Math.round(60000-(currenttime-starttime))/1000).toFixed(2);
 				document.getElementById("countdown").innerHTML = countdown;
 				console.log(countdown);	
 			}

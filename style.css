@@ -1,0 +1,10 @@
+body {
+	background-color: #ff0000;
+}
+
+#countdown {
+	font-size: 200px;
+	font-family: 'Orbitron', sans-serif;
+	color: #ffffff;
+	padding: 20vh 25vw;
+}
