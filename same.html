@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+	
+
+	content i think
+	<button onclick="flip()""> </button>
+
+	<div id="countdown"> haha same </div>
+
+	<script>
+		const starttime = Date.now();
+		var currenttime = 0;
+		var countdown = 60;
+		var check = false;
+		var timer;
+
+		function flip(){
+			check = !check;
+			console.log(check);
+			if(check) timer = setInterval(updatetime(), 10);
+		}
+
+		function updatetime(){
+			currenttime = Date.now();
+			countdown = Number((60-(currenttime-starttime)/1000).toFixed(2));
+			document.getElementById("countdown").innerHTML = countdown;
+			console.log(countdown);			
+		}
+
+		flip();
+		
+	</script>
+
+</body>
+</html>
