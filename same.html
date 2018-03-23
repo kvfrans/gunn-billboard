@@ -22,7 +22,7 @@
 	</div>
 
 
-	<div id="countdown-content"> 
+	<div id="countdown-content">
 		<div id="countdowntext"> GO TO CLASS </div>
 		<div id="countdown">  </div>
 	</div>
@@ -51,7 +51,7 @@
 				currenttime = Date.now();
 				countdown = parseFloat(Math.round(60000-(currenttime-starttime))/1000).toFixed(2);
 				document.getElementById("countdown").innerHTML = countdown;
-				console.log(countdown);	
+				console.log(countdown);
 			}
 			else {
 				timer = null;
@@ -86,6 +86,7 @@
 			}
 		});
 
+		settimer();
 		</script>
 
 </body>
