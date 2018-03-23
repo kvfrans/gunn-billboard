@@ -8,7 +8,7 @@ body {
  	grid-template-columns: 25% 25% 25% 25%;
  	grid-template-rows: 25% 25% 25% 25%;
  	justify-content: stretch;
-  	grid-template-areas: 
+  	grid-template-areas:
   		"schedule schedule time time"
   		"schedule schedule time time"
   		"schedule schedule news news"
@@ -31,7 +31,7 @@ body {
 
 #countdown-content {
 	font-size: 350px;
-	font-family: 'Orbitron', sans-serif;
+	/* font-family: 'Orbitron', sans-serif; */
 	color: #ffffff;
 	padding: 20vh 0vw 0vh 5vw;
 }
