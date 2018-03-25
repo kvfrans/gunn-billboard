@@ -13,11 +13,27 @@
 
 	<div class="container">
 
-		<div id="item-a"> schedule </div>
+		<div id="item-a"> Schedule 
+			
+			<div class="period" id="a"> A period </div>
+			<div class="period" id="c"> A period </div>
+			<div class="period" id="brunch"> A period </div>
+			<div class="period" id="flex"> A period </div>
+			<div class="period" id="lunch"> A period </div>
+			<div class="period" id="b"> A period </div>
+			<div class="period" id="g"> A period </div>
 
-		<div id="item-b"> time </div>
+		</div>
 
-		<div id="item-c"> news </div>
+		<div id="item-b"> Current Time 
+			<div id="clock"> 00:00 </div>
+		</div>
+
+		<div id="item-c"> News 
+			<div id="news-content"> 
+				Do not touch the display. Thanks
+			</div>
+		</div>
 
 	</div>
 
@@ -34,24 +50,30 @@
 		var countdown = 60;
 		var check = true;
 		var hidden = true;
+		var date = new Date();
+		var periodtimes;
 		var timer;
 
 		var schedule;
 
 		function settimer(){
 			document.getElementById("countdowntext").style.display = 'block';
+			hidecontent();
 			document.body.style.background = "#ff0000";
 			starttime = Date.now();
-			timer = setInterval(updatetime, 13);
+			for (var i = periodtimes.length - 1; i >= 0; i--) {
+				if(date.getHour()=periodtimes[i].getHour() && date.getMinute()=periodtimes[i].getMinute()-1)
+					timer = setInterval(updatetime, 13);
+			}(
 		}
 
 		function updatetime(){
-			if(countdown < 10) document.getElementById("countdown").style.setProperty("left", )
+			// if(countdown < 10) document.getElementById("countdown").style.setProperty("left", 25%);
 			if(countdown > 0){
 				currenttime = Date.now();
 				countdown = parseFloat(Math.round(60000-(currenttime-starttime))/1000).toFixed(2);
 				document.getElementById("countdown").innerHTML = countdown;
-				console.log(countdown);	
+				console.log(countdown);
 			}
 			else {
 				timer = null;
@@ -65,6 +87,7 @@
 			if(hidden) {
 				document.getElementById("countdown-content").style.display = 'none';
 				document.getElementById("countdowntext").style.display = 'none';
+				document.body.style.background = "#ffffff";
 			}
 			else {
 				document.getElementById("countdown-content").style.display = 'block';
@@ -73,9 +96,29 @@
 			hidden = !hidden;
 		}
 
+		function hidecontent(){
+			var same = document.getElementsByClassName("container");
+			if(hidden) {
+				same.visibility = 'hidden';
+			}
+			else {
+				same.visibility = 'visible';
+			}
+		}
+
 		function parseschedule(res){
 			schedule = res.split(/\r?\n/);
 			console.log(schedule);
+		}
+
+		function addperiod(periodname){
+			var div = document.createElement('div');
+			div.setAttribute('class', 'period');
+			document.getElementById("item-a").append(div);
+		}
+
+		function updateclock(){
+			document.getElementById("clock").innerHTML = date.getHours() + ":" + date.getMinutes();
 		}
 
 		$.get({
@@ -85,6 +128,10 @@
 				parseschedule(res);
 			}
 		});
+
+		setInterval(updateclock, 30)
+
+		hidecontent();
 
 		</script>
 

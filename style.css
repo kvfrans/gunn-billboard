@@ -3,10 +3,11 @@ body {
 }
 
 .container {
+	position: absolute;
 	display: grid;
  	grid-gap: 10px;
- 	grid-template-columns: 25% 25% 25% 25%;
- 	grid-template-rows: 25% 25% 25% 25%;
+   	grid-template-columns: repeat(4, 24vw);
+  	grid-template-rows: repeat(4, 22vmin);
  	justify-content: stretch;
   	grid-template-areas: 
   		"schedule schedule time time"
@@ -15,18 +16,100 @@ body {
   		"schedule schedule news news";
 }
 
+.period {
+	width:auto;
+  	height:auto;
+	margin: 10px;
+	font-size: 9vh;
+}
+
+#a {
+	background-color: red;
+	color: white;
+	padding-left:0.3em;
+}
+
+#b {
+	background-color: orange;
+	color: white;
+	padding-left:0.3em;
+}
+
+#c {
+	background-color: yellow;
+	color: white;
+	padding-left:0.3em;
+}
+
+#d {
+	background-color: green;
+	font-size: 8vw;
+	color: white;
+	padding-left:0.3em;
+}
+
+#e {
+	background-color: blue;
+	color: white;
+	padding-left:0.3em;
+}
+
+#f {
+	background-color: purple;
+	font-size: 8vw;
+	color: white;
+	padding-left:0.3em;
+}
+
+#g {
+	background-color: tan;
+	color: white;
+	padding-left:0.3em;
+}
+
+#brunch {
+	background-color: grey;
+	color: white;
+	padding-left:0.3em;
+}
+
+#flex {
+	background-color: black;
+	color: white;
+	padding-left:0.3em;
+}
+
+#lunch {
+	background-color: grey;
+	color: white;
+	padding-left:0.3em;
+}
+
+#clock {
+	font-size: 250px;
+}
+
+#news-content {
+	font-size: 80px;
+	width: 40vw;
+}
+
 #item-a {
 	background-color: #e0e0e0;
 	grid-area: schedule;
+	font-size: 40px;
 }
 
 #item-b {
-	background-color: #f0f0f0;
+	background-color: #e0e0e0;
 	grid-area: time;
+	font-size: 40px;
 }
 
 #item-c {
-	grid-area: news
+	background-color: #e0e0e0;
+	grid-area: news;
+	font-size: 40px;
 }
 
 #countdown-content {
