@@ -9,7 +9,7 @@ body {
    	grid-template-columns: repeat(4, 24vw);
   	grid-template-rows: repeat(4, 22vmin);
  	justify-content: stretch;
-  	grid-template-areas: 
+  	grid-template-areas:
   		"schedule schedule time time"
   		"schedule schedule time time"
   		"schedule schedule news news"
