@@ -61,10 +61,10 @@
 			hidecontent();
 			document.body.style.background = "#ff0000";
 			starttime = Date.now();
-			for (var i = periodtimes.length - 1; i >= 0; i--) {
-				if(date.getHour()=periodtimes[i].getHour() && date.getMinute()=periodtimes[i].getMinute()-1)
-					timer = setInterval(updatetime, 13);
-			}(
+			// for (var i = periodtimes.length - 1; i >= 0; i--) {
+			// 	if(date.getHour()=periodtimes[i].getHour() && date.getMinute()=periodtimes[i].getMinute()-1)
+			// 		timer = setInterval(updatetime, 13);
+			// }
 		}
 
 		function updatetime(){
@@ -118,7 +118,7 @@
 		}
 
 		function updateclock(){
-			document.getElementById("clock").innerHTML = date.getHours() + ":" + date.getMinutes();
+			document.getElementById("clock").innerHTML = date.getHours()%12 + ":" + date.getMinutes();
 		}
 
 		$.get({
