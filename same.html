@@ -11,8 +11,6 @@
 
 </head>
 <body>
-	<button onclick="settimer()"> timer </button>
-	<button onclick="hidetimer()"> hide </button>
 	<div class="row">
 		<div class="col s6">
 			<div class="card pink darken-1">
@@ -47,104 +45,68 @@
 			</div>
 		</div>
 		<div class="col s6">
-			<div class="card red darken-4">
+			<div class="card blue lighten-2">
 				<div class="card-content white-text">
+					<span class="card-title">The Time</span>
 					<span class="card-title"><h1><span id="clock"> 00:00 </span></h1></span>
 				</div>
 			</div>
-			<div class="card red">
+			<div id="countdown-content">
+				<div class="card red">
+					<div class="card-content white-text">
+						<span class="card-title"><h2>Go to class!!!!!!</h2></span>
+				        <p id="countdown">0:00</p>
+					</div>
+				</div>
+			</div>
+			<div class="card blue">
 				<div class="card-content white-text">
 					<span class="card-title">News</span>
-				</div>
-			</div>
-			<div class="card red darken-2">
-				<div class="card-content white-text">
-		            <p>I am a very simple card. I am good at containing small bits of information.
-		            I am convenient because I require little markup to use effectively.</p>
-					</ul>
+					<div class="card-action"></div>
+			        <p>If you have news for the board contact Gunn Engineering!</p>
 				</div>
 			</div>
 		</div>
 	</div>
 
-		<div id="item-b"> Current Time
-			<div id="clock"> 00:00 </div>
-		</div>
-
-		<div id="item-c"> News
-			<div id="news-content">
-				Do not touch the display. Thanks
-			</div>
-		</div>
-
-	</div>
-
-
-	<div id="countdown-content">
-		<div id="countdowntext"> GO TO CLASS </div>
-		<div id="countdown">  </div>
-	</div>
 
 
 	<script>
 		var starttime;
-		var currenttime = 0;
+		var currenttime = Date.now();
 		var countdown = 60;
 		var check = true;
 		var hidden = true;
 		var date = new Date();
-		var periodtimes;
+		var periodtimes = [];
 		var timer;
 
 		var schedule;
 
 		function settimer(){
-			document.getElementById("countdowntext").style.display = 'block';
-			hidecontent();
-			document.body.style.background = "#ff0000";
+			document.getElementById("countdown-content").style.display = 'block';
+			document.body.style.background = "#212121";
 			starttime = Date.now();
-			// for (var i = periodtimes.length - 1; i >= 0; i--) {
-			// 	if(date.getHour()=periodtimes[i].getHour() && date.getMinute()=periodtimes[i].getMinute()-1)
-			// 		timer = setInterval(updatetime, 13);
-			// }
+			var timer = setInterval(function(){
+				var done = updatetime();
+				if(done) {
+					clearInterval(timer);
+					document.getElementById("countdown-content").style.display = 'none';
+					document.body.style.background = "#FFFFFF";
+				}
+    		}, 13);
 		}
 
 		function updatetime(){
-			// if(countdown < 10) document.getElementById("countdown").style.setProperty("left", 25%);
+			currenttime = new Date();
 			if(countdown > 0){
-				currenttime = Date.now();
-				countdown = parseFloat(Math.round(60000-(currenttime-starttime))/1000).toFixed(2);
+				countdown = parseFloat(60 - (currenttime.getSeconds()+currenttime.getMilliseconds()*0.001)).toFixed(2);
 				document.getElementById("countdown").innerHTML = countdown;
-				console.log(countdown);
+				return false;
 			}
 			else {
-				timer = null;
 				countdown = 0;
-				document.getElementById("countdown").innerHTML = "0.00";
-				document.getElementById("countdowntext").innerHTML = "you are late";
-			}
-		}
-
-		function hidetimer(){
-			if(hidden) {
-				document.getElementById("countdown-content").style.display = 'none';
-				document.getElementById("countdowntext").style.display = 'none';
-				document.body.style.background = "#ffffff";
-			}
-			else {
-				document.getElementById("countdown-content").style.display = 'block';
-				document.getElementById("countdowntext").style.display = 'block';
-			}
-			hidden = !hidden;
-		}
-
-		function hidecontent(){
-			var same = document.getElementsByClassName("container");
-			if(hidden) {
-				same.visibility = 'hidden';
-			}
-			else {
-				same.visibility = 'visible';
+				return true;
 			}
 		}
 
@@ -160,7 +122,26 @@
 		}
 
 		function updateclock(){
-			document.getElementById("clock").innerHTML = date.getHours()%12 + ":" + date.getMinutes();
+			date = new Date();
+			if(date.getMinutes() > 10) {
+				document.getElementById("clock").innerHTML = date.getHours()%12 + ":" + date.getMinutes();
+			}
+			else {
+				document.getElementById("clock").innerHTML = date.getHours()%12 + ":0" + date.getMinutes();
+			}
+			//checks if next 1 min before class & hidden
+			if(countdowncheck(((date.getHours()%12)*100+date.getMinutes())+1)){
+				settimer();
+			}
+		}
+
+		//checks if time is at next period
+		function countdowncheck(time){
+			console.log(time);
+			if(time==825 || time==945 || time==1155 || time==130){
+				return true;
+			}
+			else return false;
 		}
 
 		$.get({
@@ -171,9 +152,10 @@
 			}
 		});
 
-		setInterval(updateclock, 30)
+		// setInterval(countdowncheck, 30)
+		setInterval(updateclock, 13);
 
-		hidecontent();
+		// hidecontent();
 		</script>
 
 </body>
