@@ -7,9 +7,9 @@
 </head>
 <body>
 
-
+<!-- 
 	<button onclick="settimer()"> timer </button>
-	<button onclick="hidetimer()"> hide </button>
+	<button onclick="hidetimer()"> hide </button> -->
 
 	<div class="container">
 
@@ -46,21 +46,30 @@
 
 	<script>
 		var starttime;
-		var currenttime = 0;
+		var currenttime = Date.now();
 		var countdown = 60;
 		var check = true;
 		var hidden = true;
 		var date = new Date();
-		var periodtimes;
+		var periodtimes = [];
 		var timer;
 
 		var schedule;
 
 		function settimer(){
 			document.getElementById("countdowntext").style.display = 'block';
-			hidecontent();
 			document.body.style.background = "#ff0000";
 			starttime = Date.now();
+			var timer = setInterval(function(){
+				updatetime();
+    			if (currenttime - starttime >= 75000) {
+    				console.log(currenttime + " " + starttime + " " + (currenttime-starttime));
+    				clearInterval(timer);
+    				hidetimer();
+    				hidecontent();
+        			return;
+    			}
+    		}, 13);
 			// for (var i = periodtimes.length - 1; i >= 0; i--) {
 			// 	if(date.getHour()=periodtimes[i].getHour() && date.getMinute()=periodtimes[i].getMinute()-1)
 			// 		timer = setInterval(updatetime, 13);
@@ -69,40 +78,47 @@
 
 		function updatetime(){
 			// if(countdown < 10) document.getElementById("countdown").style.setProperty("left", 25%);
+			currenttime = Date.now();
 			if(countdown > 0){
-				currenttime = Date.now();
 				countdown = parseFloat(Math.round(60000-(currenttime-starttime))/1000).toFixed(2);
 				document.getElementById("countdown").innerHTML = countdown;
 				console.log(countdown);
 			}
 			else {
-				timer = null;
 				countdown = 0;
 				document.getElementById("countdown").innerHTML = "0.00";
 				document.getElementById("countdowntext").innerHTML = "you are late";
+				console.log("set0");
 			}
 		}
 
 		function hidetimer(){
 			if(hidden) {
-				document.getElementById("countdown-content").style.display = 'none';
-				document.getElementById("countdowntext").style.display = 'none';
-				document.body.style.background = "#ffffff";
-			}
-			else {
 				document.getElementById("countdown-content").style.display = 'block';
 				document.getElementById("countdowntext").style.display = 'block';
+				document.body.style.background = "#ffffff";
+				console.log(1);
+			}
+			else {
+				document.getElementById("countdown-content").style.display = 'none';
+				document.getElementById("countdowntext").style.display = 'none';
 			}
 			hidden = !hidden;
 		}
 
 		function hidecontent(){
-			var same = document.getElementsByClassName("container");
+			var elements = document.getElementsByClassName("container");
 			if(hidden) {
-				same.visibility = 'hidden';
+			    for (var i = 0; i < elements.length; i++) {
+			        elements[i].style.display = 'block';
+			    }
+				console.log("show");
 			}
 			else {
-				same.visibility = 'visible';
+				for (var i = 0; i < elements.length; i++) {
+			        elements[i].style.display = 'none';
+			    }
+				console.log("hide");
 			}
 		}
 
@@ -118,7 +134,27 @@
 		}
 
 		function updateclock(){
-			document.getElementById("clock").innerHTML = date.getHours()%12 + ":" + date.getMinutes();
+			// console.log("clock");
+			date = new Date();
+			if(date.getMinutes()>10) document.getElementById("clock").innerHTML = date.getHours()%12 + ":" + date.getMinutes();
+			else document.getElementById("clock").innerHTML = date.getHours()%12 + ":0" + date.getMinutes();
+			//checks if next 1 min before class & hidden
+			if(countdowncheck(((date.getHours()%12)*100+date.getMinutes())+1)){
+				// console.log(countdowncheck(((date.getHours()%12)*100+date.getMinutes())+1));
+				if(hidden) {
+					hidetimer();
+					hidecontent();
+					settimer();
+				}
+			}
+		}
+
+		//checks if time is at next period
+		function countdowncheck(time){
+			if(time==825 || time==945 || time==1155 || time==130){
+				return true;
+			}
+			else return false;
 		}
 
 		$.get({
@@ -129,9 +165,10 @@
 			}
 		});
 
-		setInterval(updateclock, 30)
+		// setInterval(countdowncheck, 30)
+		setInterval(updateclock, 13);
 
-		hidecontent();
+		// hidecontent();
 		</script>
 
 </body>
