@@ -1,5 +1,5 @@
 body {
-	background-color: #ffffff;
+	background-color: #212121;
 }
 
 .container {
@@ -9,7 +9,7 @@ body {
    	grid-template-columns: repeat(4, 24vw);
   	grid-template-rows: repeat(4, 22vmin);
  	justify-content: stretch;
-  	grid-template-areas: 
+  	grid-template-areas:
   		"schedule schedule time time"
   		"schedule schedule time time"
   		"schedule schedule news news"
@@ -86,7 +86,7 @@ body {
 }
 
 #clock {
-	font-size: 250px;
+	font-size: 200px;
 }
 
 #news-content {

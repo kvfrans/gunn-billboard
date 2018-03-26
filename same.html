@@ -4,33 +4,75 @@
 	<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script src="jquery.js"></script>
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
 </head>
 <body>
-
-
 	<button onclick="settimer()"> timer </button>
 	<button onclick="hidetimer()"> hide </button>
-
-	<div class="container">
-
-		<div id="item-a"> Schedule 
-			
-			<div class="period" id="a"> A period </div>
-			<div class="period" id="c"> A period </div>
-			<div class="period" id="brunch"> A period </div>
-			<div class="period" id="flex"> A period </div>
-			<div class="period" id="lunch"> A period </div>
-			<div class="period" id="b"> A period </div>
-			<div class="period" id="g"> A period </div>
-
+	<div class="row">
+		<div class="col s6">
+			<div class="card pink darken-1">
+				<div class="card-content white-text">
+					<span class="card-title">A period (8:25 - 9:25)</span>
+				</div>
+			</div>
+			<div class="card light-green darken-1">
+				<div class="card-content white-text">
+					<span class="card-title">Brunch (9:25 - 9:45)</span>
+				</div>
+			</div>
+			<div class="card amber darken-1">
+				<div class="card-content white-text">
+					<span class="card-title">Flex (9:45 - 11:45)</span>
+				</div>
+			</div>
+			<div class="card blue darken-1">
+				<div class="card-content white-text">
+					<span class="card-title">B period (11:55 - 12:50)</span>
+				</div>
+			</div>
+			<div class="card green darken-1">
+				<div class="card-content white-text">
+					<span class="card-title">Lunch (12:50 - 1:30)</span>
+				</div>
+			</div>
+			<div class="card deep-purple darken-1">
+				<div class="card-content white-text">
+					<span class="card-title">F period (1:30 - 2:25)</span>
+				</div>
+			</div>
 		</div>
+		<div class="col s6">
+			<div class="card red darken-4">
+				<div class="card-content white-text">
+					<span class="card-title"><h1><span id="clock"> 00:00 </span></h1></span>
+				</div>
+			</div>
+			<div class="card red">
+				<div class="card-content white-text">
+					<span class="card-title">News</span>
+				</div>
+			</div>
+			<div class="card red darken-2">
+				<div class="card-content white-text">
+		            <p>I am a very simple card. I am good at containing small bits of information.
+		            I am convenient because I require little markup to use effectively.</p>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
 
-		<div id="item-b"> Current Time 
+		<div id="item-b"> Current Time
 			<div id="clock"> 00:00 </div>
 		</div>
 
-		<div id="item-c"> News 
-			<div id="news-content"> 
+		<div id="item-c"> News
+			<div id="news-content">
 				Do not touch the display. Thanks
 			</div>
 		</div>
