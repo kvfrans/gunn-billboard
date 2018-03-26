@@ -9,7 +9,7 @@ body {
    	grid-template-columns: repeat(4, 24vw);
   	grid-template-rows: repeat(4, 22vmin);
  	justify-content: stretch;
-  	grid-template-areas:
+  	grid-template-areas: 
   		"schedule schedule time time"
   		"schedule schedule time time"
   		"schedule schedule news news"
@@ -24,63 +24,63 @@ body {
 }
 
 #a {
-	background-color: red;
+	background-color: #e74c3c;
 	color: white;
 	padding-left:0.3em;
 }
 
 #b {
-	background-color: orange;
+	background-color: #3498db;
 	color: white;
 	padding-left:0.3em;
 }
 
 #c {
-	background-color: yellow;
+	background-color: #f1c40f;
 	color: white;
 	padding-left:0.3em;
 }
 
 #d {
-	background-color: green;
+	background-color: #34495e;
 	font-size: 8vw;
 	color: white;
 	padding-left:0.3em;
 }
 
 #e {
-	background-color: blue;
+	background-color: #f1c40f;
 	color: white;
 	padding-left:0.3em;
 }
 
 #f {
-	background-color: purple;
+	background-color: #8e44ad;
 	font-size: 8vw;
 	color: white;
 	padding-left:0.3em;
 }
 
 #g {
-	background-color: tan;
+	background-color: #2ecc71;
 	color: white;
 	padding-left:0.3em;
 }
 
 #brunch {
-	background-color: grey;
+	background-color: #95a5a6;
 	color: white;
 	padding-left:0.3em;
 }
 
 #flex {
-	background-color: black;
+	background-color: #7f8c8d;
 	color: white;
 	padding-left:0.3em;
 }
 
 #lunch {
-	background-color: grey;
+	background-color: #95a5a6;
 	color: white;
 	padding-left:0.3em;
 }
