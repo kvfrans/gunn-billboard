@@ -15,20 +15,20 @@
 		<div class="col s6">
 			<div class="card pink darken-1">
 				<div class="card-content white-text">
-					<span class="card-title">C period (8:25 - 9:25)</span>
+					<span class="card-title">Flex (8:25 - 10:00)</span>
 				</div>
 			</div>
 			<div class="card light-blue darken-1">
 				<div class="card-content white-text">
-					<span class="card-title">Brunch (9:25 - 9:45)</span>
+					<span class="card-title">Brunch (10:00 - 10:15)</span>
 				</div>
 			</div>
 			<div class="card amber darken-1">
 				<div class="card-content white-text">
-					<span class="card-title">Flex (9:45 - 11:45)</span>
+					<span class="card-title">Flex (10:15 - 12:15)</span>
 				</div>
 			</div>
-			<div class="card blue darken-1">
+			<!-- <div class="card blue darken-1">
 				<div class="card-content white-text">
 					<span class="card-title">D period (11:55 - 12:50)</span>
 				</div>
@@ -42,7 +42,7 @@
 				<div class="card-content white-text">
 					<span class="card-title">G period (1:30 - 2:25)</span>
 				</div>
-			</div>
+			</div> -->
 		</div>
 		<div class="col s6">
 			<div class="card blue lighten-2">
@@ -123,11 +123,21 @@
 
 		function updateclock(){
 			date = new Date();
-			if(date.getMinutes() > 10) {
-				document.getElementById("clock").innerHTML = date.getHours()%12 + ":" + date.getMinutes();
+			if(date.getMinutes() >= 10) {
+				if(date.getHours <= 12) {
+					document.getElementById("clock").innerHTML = date.getHours() + ":" + date.getMinutes();
+				}
+				else {
+					document.getElementById("clock").innerHTML = date.getHours()%12 + ":" + date.getMinutes();
+				}
 			}
 			else {
-				document.getElementById("clock").innerHTML = date.getHours()%12 + ":0" + date.getMinutes();
+				if(date.getHours <= 12) {
+					document.getElementById("clock").innerHTML = date.getHours() + ":0" + date.getMinutes();
+				}
+				else {
+					document.getElementById("clock").innerHTML = date.getHours()%12 + ":0" + date.getMinutes();
+				}
 			}
 			//checks if next 1 min before class & hidden
 			if(countdowncheck(((date.getHours()%12)*100+date.getMinutes())+1)){
