@@ -77,16 +77,24 @@
 
 
 	<script>
-		var starttime;
-		var currenttime = Date.now();
-		var countdown = 60;
 		var check = true;
 		var hidden = true;
-		var date = new Date();
-		var periodtimes = [];
 		var timer;
 
+		var starttime;
+		var countdown = 60;
+		var date = new Date();
+		var currenttime = Date.now();
+		var currentdate = date.getUTCMonth() + 1 + "-" + date.getUTCDate();
+
+		var altschedules;
+		var periodtimes;
 		var schedule;
+
+		//gets the alternate schedule list from the gunnwebapp
+		getalternateschedules();
+
+
 
 		function settimer(){
 			document.getElementById("countdown-content").style.display = 'block';
@@ -158,6 +166,115 @@
 			}
 			else return false;
 		}
+
+		function getalternateschedules(callback) {
+		  	$.getJSON("https://orbiit.github.io/gunn-web-app/json/alt-schedules-2017-18-object.json", function(data){
+				altschedules = data;
+				console.log(altschedules);
+				checkalternate();
+			});
+		}
+
+		function checkalternate(){
+			// console.log(altschedules);
+			for(x in altschedules){
+				if(true) {
+					//call set schedule function with information from altschedules[x]
+					setschedule(altschedules[x]);
+					console.log(altschedules[x]);
+					return;
+				}
+				else {
+					//call set schedule function with date.getDay();
+					setschedule(date.getDay());
+				}
+				console.log(x);
+			}
+		}
+
+		function setschedule(day) {
+			if(day==0 || day==7) {
+				//set some var to false and display text saying no school
+			}
+
+			else if(day==1) {
+				periodtimes = {
+					"A": {"start":"8:25", "end":"9:45"},
+					"Brunch": {"start":"9:45", "end":"10:00"},
+					"B": {"start":"10:00", "end":"11:15"},
+					"C": {"start":"11:25", "end":"12:40"},
+					"Lunch": {"start":"12:40", "end":"1:20"},
+					"F": {"start":"1:20", "end":"2:35"}
+				}
+
+				// "periods":[{"name":"C","start":{"totalminutes":505,"hour":8,"minute":25},"end":{"totalminutes":565,"hour":9,"minute":25}},{"name":"Brunch","start":{"totalminutes":565,"hour":9,"minute":25},"end":{"totalminutes":585,"hour":9,"minute":45}},{"name":"Flex","start":{"totalmin
+			}
+			else if(day==2) {
+				periodtimes = {
+					"A": {"start":"8:25", "end":"9:45"},
+					"Brunch": {"start":"9:45", "end":"10:00"},
+					"B": {"start":"10:00", "end":"11:15"},
+					"C": {"start":"11:25", "end":"12:40"},
+					"Lunch": {"start":"12:40", "end":"1:20"},
+					"F": {"start":"1:20", "end":"2:35"}
+				}
+
+			}
+			else if(day==3) {
+				periodtimes = {
+					"D": {"start":"8:25", "end":"9:45"},
+					"Brunch": {"start":"9:45", "end":"10:00"},
+					"Flex": {"start":"10:00", "end":"10:50"},
+					"E": {"start":"11:00", "end":"12:15"},
+					"Lunch": {"start":"12:15", "end":"12:55"},
+					"A": {"start":"12:55", "end":"2:15"},
+					"G": {"start":"2:25", "end":"3:40"}
+				}
+
+			}
+			else if(day==4) {
+				periodtimes = {
+					"B": {"start":"8:25", "end":"9:50"},
+					"Brunch": {"start":"9:50", "end":"10:05"},
+					"C": {"start":"10:05", "end":"11:25"},
+					"D": {"start":"11:35", "end":"12:55"},
+					"Lunch": {"start":"12:55", "end":"1:35"},
+					"F": {"start":"1:35", "end":"2:55"}
+				}
+			}
+			else if(day==5) {
+				periodtimes = {
+					"E": {"start":"8:25", "end":"9:50"},
+					"Brunch": {"start":"9:50", "end":"10:05"},
+					"Flex": {"start":"10:05", "end":"10:55"},
+					"B": {"start":"11:05", "end":"12:15"},
+					"Lunch": {"start":"12:15", "end":"12:55"},
+					"A": {"start":"12:55", "end":"2:05"},
+					"G": {"start":"2:15", "end":"3:35"}
+				}
+			}
+			else if(day==6) {
+				periodtimes = {
+					"C": {"start":"8:25", "end":"9:40"},
+					"Brunch": {"start":"9:40", "end":"9:55"},
+					"D": {"start":"9:55", "end":"11:05"},
+					"C": {"start":"11:15", "end":"12:25"},
+					"Lunch": {"start":"12:25", "end":"1:05"},
+					"F": {"start":"1:05", "end":"2:15"},
+					"G": {"start":"2:25", "end":"3:35"}
+				}
+			}
+			else{
+				console.log(day);
+				var times = JSON.parse(day);
+				console.log(times);
+			}
+		}
+
+		function getalternatetimes(){
+
+		}
+
 
 		$.get({
 			url: "http://kvfrans.com:8044/schedule.txt",
