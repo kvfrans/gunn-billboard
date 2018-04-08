@@ -88,11 +88,16 @@
 		var currentdate = date.getUTCMonth() + 1 + "-" + date.getUTCDate();
 
 		var altschedules;
-		var periodtimes;
+		var periodtimes = [];
 		var schedule;
+
+
 
 		//gets the alternate schedule list from the gunnwebapp
 		getalternateschedules();
+
+
+
 
 
 
@@ -178,7 +183,7 @@
 		function checkalternate(){
 			// console.log(altschedules);
 			for(x in altschedules){
-				if(true) {
+				if(x == currentdate) { //set this to true for testing
 					//call set schedule function with information from altschedules[x]
 					setschedule(altschedules[x]);
 					console.log(altschedules[x]);
@@ -195,6 +200,7 @@
 		function setschedule(day) {
 			if(day==0 || day==7) {
 				//set some var to false and display text saying no school
+				console.log("no school today");
 			}
 
 			else if(day==1) {
@@ -265,14 +271,19 @@
 				}
 			}
 			else{
-				console.log(day);
-				var times = JSON.parse(day);
-				console.log(times);
+				console.log(day["periods"]);
+				temp = day["periods"];
+				for (x in temp){
+					var timeobj = {"start": temp[x].start.hour + ":" + temp[x].start.minute, "end": temp[x].end.hour + ":" + temp[x].end.minute};
+					console.log(timeobj);
+					periodtimes.push({
+						key: 	temp[x].name,
+						value: 	timeobj
+					});
+				}
+				// console.log(times);
 			}
-		}
-
-		function getalternatetimes(){
-
+			console.log(periodtimes);
 		}
 
 
