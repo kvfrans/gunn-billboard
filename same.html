@@ -145,7 +145,10 @@
 		function updateclock(){
 			date = new Date();
 			if(date.getMinutes() >= 10) {
-				if(date.getHours <= 12) {
+				if(date.getHours() == 0) {
+					document.getElementById("clock").innerHTML = 12 + ":" + date.getMinutes();
+				}
+				else if(date.getHours() <= 12) {
 					document.getElementById("clock").innerHTML = date.getHours() + ":" + date.getMinutes();
 				}
 				else {
@@ -153,7 +156,10 @@
 				}
 			}
 			else {
-				if(date.getHours <= 12) {
+				if(date.getHours() == 0) {
+					document.getElementById("clock").innerHTML = 12 + ":" + date.getMinutes();
+				}
+				else if(date.getHours() <= 12) {
 					document.getElementById("clock").innerHTML = date.getHours() + ":0" + date.getMinutes();
 				}
 				else {
