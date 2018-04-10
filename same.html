@@ -333,11 +333,11 @@
 			for(y in a){
 				counter++;
 				x = a[y];
-				document.getElementById(counter).innerHTML = (periodtimes[x]["key"] + " (" + periodtimes[x]["value"]["start"] + " - "  + periodtimes[x]["value"]["end"] + ")");
+				document.getElementById(counter).innerHTML = (periodtimes[x].key + " (" + periodtimes[x].value.start + " - "  + periodtimes[x].value.end + ")");
 				console.log(counter);
 			}
 			for(counter = counter+1; counter<=8; counter++){
-				document.getElementById(counter + "shell").style.display = 'none'	
+				document.getElementById(counter + "shell").style.display = 'none';	
 			}
 		}
 
