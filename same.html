@@ -222,7 +222,6 @@
 					"F": {"start":"1:20", "end":"2:35"}
 				}
 
-				// "periods":[{"name":"C","start":{"totalminutes":505,"hour":8,"minute":25},"end":{"totalminutes":565,"hour":9,"minute":25}},{"name":"Brunch","start":{"totalminutes":565,"hour":9,"minute":25},"end":{"totalminutes":585,"hour":9,"minute":45}},{"name":"Flex","start":{"totalmin
 			}
 			else if(day==2) {
 				periodtimes = {
@@ -283,7 +282,38 @@
 				console.log(day["periods"]);
 				temp = day["periods"];
 				for (x in temp){
-					var timeobj = {"start": temp[x].start.hour + ":" + temp[x].start.minute, "end": temp[x].end.hour + ":" + temp[x].end.minute};
+					var hour1;
+					var hour2;
+					var min1;
+					var min2;
+
+					if(temp[x].start.hour>12) {
+						hour1 = temp[x].start.hour%12;
+					}
+					else {
+						hour1 = temp[x].start.hour;
+					}
+					if(temp[x].end.hour>12) {
+						hour2 = temp[x].end.hour%12;
+					}
+					else {
+						hour2 = temp[x].end.hour;
+					}
+
+					if(temp[x].start.minute<10) {
+						min1 = "0" + temp[x].start.minute;
+					}
+					else {
+						min1 = temp[x].start.minute;
+					}
+					if(temp[x].end.minute<10) {
+						min2 = "0" + temp[x].end.minute;
+					}
+					else {
+						min2 = temp[x].end.minute;
+					}
+
+					var timeobj = {"start": hour1 + ":" + min1, "end": hour2 + ":" + min2};
 					console.log(timeobj);
 					periodtimes.push({
 						key: 	temp[x].name,
