@@ -13,39 +13,44 @@
 <body>
 	<div class="row">
 		<div class="col s6">
-			<div class="card pink darken-1">
+			<div id="1shell" class="card pink darken-1">
 				<div class="card-content white-text">
-					<span class="card-title"> E (8:25 - 9:25)</span>
+					<span id="1" class="card-title"> E (8:25 - 9:25)</span>
 				</div>
 			</div>
-			<div class="card light-blue darken-1">
+			<div id="2shell" class="card light-blue darken-1">
 				<div class="card-content white-text">
-					<span class="card-title"> Brunch (9:25 - 9:40)</span>
+					<span id="2" class="card-title"> Brunch (9:25 - 9:40)</span>
 				</div>
 			</div>
-			<div class="card amber darken-1">
+			<div id="3shell" class="card amber darken-1">
 				<div class="card-content white-text">
-					<span class="card-title"> B (9:40 - 10:55)</span>
+					<span id="3" class="card-title"> B (9:40 - 10:55)</span>
 				</div>
 			</div>
-			<div class="card blue darken-1">
+			<div id="4shell" class="card blue darken-1">
 				<div class="card-content white-text">
-					<span class="card-title"> C ( 11:05 - 12:20)</span>
+					<span id="4" class="card-title"> C ( 11:05 - 12:20)</span>
 				</div>
 			</div>
-			<div class="card green darken-1">
+			<div id="5shell" class="card green darken-1">
 				<div class="card-content white-text">
-					<span class="card-title"> Lunch (12:20 - 1:00)</span>
+					<span id="5" class="card-title"> Lunch (12:20 - 1:00)</span>
 				</div>
 			</div>
-			<div class="card deep-purple darken-1">
+			<div id=61shell" class="card deep-purple darken-1">
 				<div class="card-content white-text">
-					<span class="card-title"> A (1:30 - 2:15)</span>
+					<span id="6" class="card-title"> A (1:30 - 2:15)</span>
 				</div>
 			</div> 
-			<div class="card blue darken-1">
+			<div id="7shell" class="card blue darken-1">
 				<div class="card-content white-text">
-					<span class="card-title"> G (2:25 - 3:40)</span>
+					<span id="7" class="card-title"> G (2:25 - 3:40)</span>
+				</div>
+			</div> 
+			<div id="8shell" class="card blue darken-2">
+				<div class="card-content white-text">
+					<span id="8" class="card-title"> G (2:25 - 3:40)</span>
 				</div>
 			</div> 
 		</div>
@@ -281,8 +286,25 @@
 				}
 				// console.log(times);
 			}
+			changeperiods();
 			console.log(periodtimes);
+			// 
 		}
+
+		function changeperiods(){
+			var counter = 0;
+			a = Object.keys(periodtimes);
+			for(y in a){
+				counter++;
+				x = a[y];
+				document.getElementById(counter).innerHTML = (periodtimes[x]["key"] + " (" + periodtimes[x]["value"]["start"] + " - "  + periodtimes[x]["value"]["end"] + ")");
+				console.log(counter);
+			}
+			for(counter = counter+1; counter<=8; counter++){
+				document.getElementById(counter + "shell").style.display = 'none'	
+			}
+		}
+
 
 
 		$.get({
