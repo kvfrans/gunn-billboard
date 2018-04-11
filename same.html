@@ -168,18 +168,24 @@
 				}
 			}
 			//checks if next 1 min before class & hidden
-			if(countdowncheck(((date.getHours()%12)*100+date.getMinutes())+1)){
-				settimer();
+			if (date.getMinutes()+1 == 60) {
+				countdowncheck((((date.getHours()+1)%12)*100))
+			}
+			else {
+				countdowncheck(((date.getHours()%12)*100+date.getMinutes())+1)
 			}
 		}
 
 		//checks if time is at next period
 		function countdowncheck(time){
-			console.log(time);
-			if(classtimes.includes(time)){
-				return true;
+			if (time < 100) {
+				time+=1200;
 			}
-			else return false;
+			console.log(time);
+
+			if(classtimes.includes(time)){
+				settimer();
+			}
 		}
 
 		function getalternateschedules(callback) {
