@@ -38,21 +38,21 @@
 					<span id="5" class="card-title"> Lunch (12:20 - 1:00)</span>
 				</div>
 			</div>
-			<div id=61shell" class="card deep-purple darken-1">
+			<div id="61shell" class="card deep-purple darken-1">
 				<div class="card-content white-text">
 					<span id="6" class="card-title"> A (1:30 - 2:15)</span>
 				</div>
-			</div> 
+			</div>
 			<div id="7shell" class="card blue darken-1">
 				<div class="card-content white-text">
 					<span id="7" class="card-title"> G (2:25 - 3:40)</span>
 				</div>
-			</div> 
+			</div>
 			<div id="8shell" class="card blue darken-2">
 				<div class="card-content white-text">
 					<span id="8" class="card-title"> G (2:25 - 3:40)</span>
 				</div>
-			</div> 
+			</div>
 		</div>
 		<div class="col s6">
 			<div class="card blue lighten-2">
@@ -90,7 +90,7 @@
 		var countdown = 60;
 		var date = new Date();
 		var currenttime = Date.now();
-		var currentdate = date.getUTCMonth() + 1 + "-" + date.getUTCDate();
+		var currentdate = date.getMonth() + 1 + "-" + date.getDate();
 
 		var altschedules;
 		var periodtimes = [];
@@ -167,7 +167,7 @@
 				}
 			}
 			//checks if next 1 min before class & hidden
-			if(countdowncheck(((date.getHours()%12)*100+date.getMinutes())+1)){
+			if(countdowncheck(((date.getHours())*100+date.getMinutes())+1)){
 				settimer();
 			}
 		}
@@ -190,96 +190,82 @@
 		}
 
 		function checkalternate(){
-			// console.log(altschedules);
-			for(x in altschedules){
+			console.log(Object.keys(altschedules));
+			for(x in Object.keys(altschedules)){
+				x = Object.keys(altschedules)[x];
 				if(x == currentdate) { //set this to true for testing
 					//call set schedule function with information from altschedules[x]
 					setschedule(altschedules[x]);
-					console.log(altschedules[x]);
 					return;
 				}
-				else {
-					//call set schedule function with date.getDay();
-					setschedule(date.getDay());
-				}
-				console.log(x);
 			}
+			setschedule(date.getDay());
 		}
 
 		function setschedule(day) {
-			if(day==0 || day==7) {
+			// console.log(day['periods']);
+			if(day==0 || day==6) {
 				//set some var to false and display text saying no school
 				console.log("no school today");
 			}
 
 			else if(day==1) {
-				periodtimes = {
-					"A": {"start":"8:25", "end":"9:45"},
-					"Brunch": {"start":"9:45", "end":"10:00"},
-					"B": {"start":"10:00", "end":"11:15"},
-					"C": {"start":"11:25", "end":"12:40"},
-					"Lunch": {"start":"12:40", "end":"1:20"},
-					"F": {"start":"1:20", "end":"2:35"}
-				}
+				periodtimes = [
+					{key: "A", value: {"start":"8:25", "end":"9:45"}},
+					{key: "Brunch", value: {"start":"9:45", "end":"10:00"}},
+					{key: "B", value: {"start":"10:00", "end":"11:15"}},
+					{key: "C", value: {"start":"11:25", "end":"12:40"}},
+					{key: "Lunch", value: {"start":"12:40", "end":"1:20"}},
+					{key: "F", value: {"start":"1:20", "end":"2:35"}}
+				]
 
 			}
 			else if(day==2) {
-				periodtimes = {
-					"A": {"start":"8:25", "end":"9:45"},
-					"Brunch": {"start":"9:45", "end":"10:00"},
-					"B": {"start":"10:00", "end":"11:15"},
-					"C": {"start":"11:25", "end":"12:40"},
-					"Lunch": {"start":"12:40", "end":"1:20"},
-					"F": {"start":"1:20", "end":"2:35"}
-				}
+				periodtimes = [
+					{key: "D", value: {"start":"8:25", "end":"9:45"}},
+					{key: "Brunch", value: {"start":"9:45", "end":"10:00"}},
+					{key: "Flex", value: {"start":"10:00", "end":"10:50"}},
+					{key: "E", value: {"start":"11:00", "end":"12:15"}},
+					{key: "Lunch", value: {"start":"12:15", "end":"12:55"}},
+					{key: "A", value: {"start":"12:55", "end":"2:15"}},
+					{key: "G", value: {"start":"2:25", "end":"3:40"}}
+				]
 
 			}
 			else if(day==3) {
-				periodtimes = {
-					"D": {"start":"8:25", "end":"9:45"},
-					"Brunch": {"start":"9:45", "end":"10:00"},
-					"Flex": {"start":"10:00", "end":"10:50"},
-					"E": {"start":"11:00", "end":"12:15"},
-					"Lunch": {"start":"12:15", "end":"12:55"},
-					"A": {"start":"12:55", "end":"2:15"},
-					"G": {"start":"2:25", "end":"3:40"}
-				}
-
+				periodtimes = [
+					{key: "B", value: {"start":"8:25", "end":"9:50"}},
+					{key: "Brunch", value: {"start":"9:50", "end":"10:05"}},
+					{key: "C", value: {"start":"10:05", "end":"11:25"}},
+					{key: "D", value: {"start":"11:35", "end":"12:55"}},
+					{key: "Lunch", value: {"start":"12:55", "end":"1:35"}},
+					{key: "F", value: {"start":"1:35", "end":"2:55"}}
+				]
 			}
 			else if(day==4) {
-				periodtimes = {
-					"B": {"start":"8:25", "end":"9:50"},
-					"Brunch": {"start":"9:50", "end":"10:05"},
-					"C": {"start":"10:05", "end":"11:25"},
-					"D": {"start":"11:35", "end":"12:55"},
-					"Lunch": {"start":"12:55", "end":"1:35"},
-					"F": {"start":"1:35", "end":"2:55"}
-				}
+				periodtimes = [
+					{key: "E", value: {"start":"8:25", "end":"9:50"}},
+					{key: "Brunch", value: {"start":"9:50", "end":"10:05"}},
+					{key: "Flex", value: {"start":"10:05", "end":"10:55"}},
+					{key: "B", value: {"start":"11:05", "end":"12:15"}},
+					{key: "Lunch", value: {"start":"12:15", "end":"12:55"}},
+					{key: "A", value: {"start":"12:55", "end":"2:05"}},
+					{key: "G", value: {"start":"2:15", "end":"3:35"}}
+				]
 			}
 			else if(day==5) {
-				periodtimes = {
-					"E": {"start":"8:25", "end":"9:50"},
-					"Brunch": {"start":"9:50", "end":"10:05"},
-					"Flex": {"start":"10:05", "end":"10:55"},
-					"B": {"start":"11:05", "end":"12:15"},
-					"Lunch": {"start":"12:15", "end":"12:55"},
-					"A": {"start":"12:55", "end":"2:05"},
-					"G": {"start":"2:15", "end":"3:35"}
-				}
-			}
-			else if(day==6) {
-				periodtimes = {
-					"C": {"start":"8:25", "end":"9:40"},
-					"Brunch": {"start":"9:40", "end":"9:55"},
-					"D": {"start":"9:55", "end":"11:05"},
-					"C": {"start":"11:15", "end":"12:25"},
-					"Lunch": {"start":"12:25", "end":"1:05"},
-					"F": {"start":"1:05", "end":"2:15"},
-					"G": {"start":"2:25", "end":"3:35"}
-				}
+				periodtimes = [
+					{key: "C", value: {"start":"8:25", "end":"9:40"}},
+					{key: "Brunch", value: {"start":"9:40", "end":"9:55"}},
+					{key: "D", value: {"start":"9:55", "end":"11:05"}},
+					{key: "E", value: {"start":"11:15", "end":"12:25"}},
+					{key: "Lunch", value: {"start":"12:25", "end":"1:05"}},
+					{key: "F", value: {"start":"1:05", "end":"2:15"}},
+					{key: "G", value: {"start":"2:25", "end":"3:35"}}
+				]
 			}
 			else{
-				console.log(day["periods"]);
+				console.log(day);
 				temp = day["periods"];
 				for (x in temp){
 					var hour1;
@@ -314,7 +300,6 @@
 					}
 
 					var timeobj = {"start": hour1 + ":" + min1, "end": hour2 + ":" + min2};
-					console.log(timeobj);
 					periodtimes.push({
 						key: 	temp[x].name,
 						value: 	timeobj
@@ -322,22 +307,21 @@
 				}
 				// console.log(times);
 			}
-			changeperiods();
 			console.log(periodtimes);
-			// 
+			changeperiods();
 		}
 
 		function changeperiods(){
 			var counter = 0;
-			a = Object.keys(periodtimes);
-			for(y in a){
+			for(y in periodtimes) {
 				counter++;
-				x = a[y];
-				document.getElementById(counter).innerHTML = (periodtimes[x].key + " (" + periodtimes[x].value.start + " - "  + periodtimes[x].value.end + ")");
-				console.log(counter);
+				x = periodtimes[y];
+				console.log(x);
+				document.getElementById(counter).innerHTML = (x['key'] + " (" + x['value']["start"] + " - "  + x['value']["end"] + ")");
+				// console.log(counter);
 			}
 			for(counter = counter+1; counter<=8; counter++){
-				document.getElementById(counter + "shell").style.display = 'none';	
+				document.getElementById(counter + "shell").style.display = 'none'
 			}
 		}
 
