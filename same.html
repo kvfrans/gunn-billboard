@@ -94,6 +94,7 @@
 
 		var altschedules;
 		var periodtimes = [];
+		var classtimes = [];
 		var schedule;
 
 
@@ -167,7 +168,7 @@
 				}
 			}
 			//checks if next 1 min before class & hidden
-			if(countdowncheck(((date.getHours())*100+date.getMinutes())+1)){
+			if(countdowncheck(((date.getHours()%12)*100+date.getMinutes())+1)){
 				settimer();
 			}
 		}
@@ -175,7 +176,7 @@
 		//checks if time is at next period
 		function countdowncheck(time){
 			console.log(time);
-			if(time==825 || time==945 || time==1155 || time==130){
+			if(classtimes.includes(time)){
 				return true;
 			}
 			else return false;
@@ -318,8 +319,10 @@
 				x = periodtimes[y];
 				console.log(x);
 				document.getElementById(counter).innerHTML = (x['key'] + " (" + x['value']["start"] + " - "  + x['value']["end"] + ")");
+				classtimes.push(parseInt(x['value']["start"].replace(":","")));
 				// console.log(counter);
 			}
+			console.log(classtimes);
 			for(counter = counter+1; counter<=8; counter++){
 				document.getElementById(counter + "shell").style.display = 'none'
 			}
@@ -327,13 +330,13 @@
 
 
 
-		$.get({
-			url: "http://kvfrans.com:8044/schedule.txt",
-			type: 'GET',
-			success: function(res) {
-				parseschedule(res);
-			}
-		});
+		// $.get({
+		// 	url: "http://kvfrans.com:8044/schedule.txt",
+		// 	type: 'GET',
+		// 	success: function(res) {
+		// 		parseschedule(res);
+		// 	}
+		// });
 
 		// setInterval(countdowncheck, 30)
 		setInterval(updateclock, 13);
